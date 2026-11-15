@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1a">
+<meta name="description" content="BR1Websides - Modern websites designed around your ideas.">
+<title>BR1Websides | Your Website Starts Here</title>
+
+<style>
+:root{--bg:#080d1a;--panel:#101a2e;--blue:#3987ff;--cyan:#58c8ff;--text:#f3f6ff;--muted:#9ba9c3;--border:rgba(255,255,255,.09)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+.container{width:min(1120px,90%);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(8,13,26,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+nav{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:23px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--blue)}
+.navlinks{display:flex;align-items:center;gap:27px}
+.navlinks a{color:var(--muted);font-size:14px;transition:.2s}
+.navlinks a:hover{color:white}
+.menu-btn{display:none;background:none;color:white;border:0;font-size:25px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 23px;border-radius:10px;background:linear-gradient(120deg,var(--blue),#2360db);color:white;font-weight:750;border:0;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 35px #3987ff45}
+.btn-outline{background:transparent;border:1px solid #3987ff80}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.hero{min-height:660px;display:flex;align-items:center;padding:90px 0;background:radial-gradient(ellipse at 75% 30%,#15356a55,transparent 50%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:50px}
+.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:20px}
+h1{font-size:clamp(43px,7vw,76px);line-height:1.08;letter-spacing:-3px}
+.gradient{background:linear-gradient(90deg,#3987ff,#65d4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:530px;margin:24px 0 30px;font-size:17px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:13px}
+.preview{padding:13px;border:1px solid #3987ff50;border-radius:20px;background:#101a2e;box-shadow:0 25px 90px #0008;transform:rotate(2deg)}
+.preview-top{display:flex;gap:6px;padding:9px 8px 16px}
+.dot{width:9px;height:9px;border-radius:50%;background:#f87171}
+.dot:nth-child(2){background:#facc15}
+.dot:nth-child(3){background:#4ade80}
+.preview-content{min-height:300px;border-radius:12px;background:linear-gradient(140deg,#132e58,#091326);padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.preview-content h2{font-size:32px;line-height:1.15}
+.preview-content p{color:#b7c8e7;font-size:13px;margin:13px 0}
+.preview-bar{height:8px;border-radius:20px;background:#3987ff;width:65%;margin-top:8px}
+.preview-bar.short{width:40%;opacity:.4}
+section{padding:100px 0}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:clamp(30px,4vw,43px);letter-spacing:-1px}
+.section-title p{color:var(--muted);margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:27px;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:#3987ff80}
+.card-icon{font-size:30px;margin-bottom:18px}
+.card h3{font-size:19px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px}
+.portfolio-card{overflow:hidden;padding:0}
+.portfolio-image{min-height:190px;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#193d75,#101a2e)}
+.portfolio-image.second{background:linear-gradient(135deg,#154b50,#101a2e)}
+.portfolio-image.third{background:linear-gradient(135deg,#49316d,#101a2e)}
+.mini-window{width:85%;background:#0b1425;border:1px solid #ffffff22;border-radius:9px;padding:13px;box-shadow:0 10px 25px #0005}
+.mini-window div{height:7px;border-radius:10px;background:#3987ff;margin:8px 0;width:75%}
+.mini-window div:nth-child(2){width:50%;opacity:.4}
+.mini-window div:nth-child(3){width:35%;opacity:.6}
+.portfolio-info{padding:22px}
+.portfolio-info p{color:var(--muted);font-size:13px;margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step-number{color:var(--blue);font-size:32px;font-weight:900;margin-bottom:12px}
+.order-wrap{max-width:760px;margin:auto;background:var(--panel);border:1px solid #3987ff55;border-radius:20px;padding:35px}
+.order-wrap h3{font-size:25px;margin-bottom:8px}
+.order-wrap>p{color:var(--muted);margin-bottom:28px;font-size:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:700}
+input,select,textarea{width:100%;padding:13px 14px;color:white;background:#091326;border:1px solid var(--border);border-radius:9px;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+select option{background:#101a2e}
+textarea{resize:vertical;min-height:125px}
+::placeholder{color:#687b9a}
+.checkbox{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:12px}
+.checkbox input{width:auto;margin-top:4px}
+.form-note{color:var(--muted);font-size:11px;margin-top:12px}
+#formMessage,.message{margin-top:15px;color:var(--cyan);font-size:14px;overflow-wrap:anywhere}
+.error{color:#ff9292!important}
+.success{color:#7de6b0!important}
+footer{border-top:1px solid var(--border);padding:35px 0}
+.footer-content{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{color:var(--muted);font-size:13px}
+.admin-link{color:#7186a8;font-size:12px}
+.admin-link:hover{color:var(--cyan)}
+#adminPage{display:none;min-height:75vh;padding:65px 0}
+#adminPage.active{display:block}
+.admin-shell{max-width:1000px;margin:auto}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.admin-top h2{font-size:clamp(28px,4vw,40px)}
+.admin-panel{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:25px;margin-bottom:20px}
+.admin-panel h3{margin-bottom:14px}
+.admin-form{max-width:430px}
+.admin-form .field{margin-bottom:15px}
+.order-list{display:grid;gap:14px}
+.order-item{border:1px solid var(--border);border-radius:12px;padding:18px;background:#0b1425}
+.order-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.order-meta{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.order-description{white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}
+.order-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.order-actions select{max-width:190px}
+.small-btn{padding:9px 13px;font-size:13px}
+.empty{color:var(--muted);padding:18px 0}
+.hidden{display:none!important}
+@media(max-width:760px){
+.hero-grid{grid-template-columns:1fr}
+.preview{max-width:480px;margin:auto}
+.cards,.steps{grid-template-columns:1fr}
+.navlinks{display:none;position:absolute;top:76px;left:0;width:100%;padding:25px;background:#0c1426;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--border)}
+.navlinks.open{display:flex}
+.menu-btn{display:block}
+.nav-cta{display:none}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.order-wrap{padding:23px}
+section{padding:75px 0}
+h1{letter-spacing:-2px}
+.admin-panel{padding:18px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="container">
+<nav>
+<a class="logo" href="#home">BR1<span>Websides</span></a>
+<button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+<div class="navlinks" id="navLinks">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#process">How it works</a>
+<a href="#order">Order</a>
+</div>
+<a class="btn nav-cta" href="#order">Get a website</a>
+</nav>
+</div>
+</header>
+
+<main id="publicPage">
+
+<section class="hero" id="home">
+<div class="container hero-grid">
+<div>
+<div class="eyebrow">Independent web design studio</div>
+<h1>Your idea.<br>Our <span class="gradient">website.</span></h1>
+<p>We create modern, stylish and responsive websites designed around your vision. Let's build something amazing together.</p>
+<div class="hero-actions">
+<a class="btn" href="#order">Start your project →</a>
+<a class="btn btn-outline" href="#portfolio">Explore work</a>
+</div>
+</div>
+<div class="preview">
+<div class="preview-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<div class="preview-content">
+<div class="eyebrow">DESIGNED FOR YOU</div>
+<h2>Make your<br><span class="gradient">ideas happen.</span></h2>
+<p>Beautiful websites. Made with creativity.</p>
+<div class="preview-bar"></div>
+<div class="preview-bar short"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">What we do</div>
+<h2>Our Services</h2>
+<p>Everything you need to build your online presence.</p>
+</div>
+<div class="cards">
+<article class="card"><div class="card-icon">🌐</div><h3>Business Websites</h3><p>Professional websites to present your business, services and contact information.</p></article>
+<article class="card"><div class="card-icon">🎨</div><h3>Custom Designs</h3><p>Unique designs built around your ideas, style and personal preferences.</p></article>
+<article class="card"><div class="card-icon">📱</div><h3>Responsive Websites</h3><p>Websites that look great and work smoothly on phones, tablets and computers.</p></article>
+</div>
+</div>
+</section>
+
+<section id="portfolio">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Our creations</div>
+<h2>Portfolio</h2>
+<p>A preview of the kind of websites we can create.</p>
+</div>
+<div class="cards">
+<article class="card portfolio-card">
+<div class="portfolio-image"><div class="mini-window"><div></div><div></div><div></div></div></div>
+<div class="portfolio-info"><h3>Business Website</h3><p>A clean and professional business layout.</p></div>
+</article>
+<article class="card portfolio-card">
+<div class="portfolio-image second"><div class="mini-window"><div></div><div></div><div></div></div></div>
+<div class="portfolio-info"><h3>Creative Studio</h3><p>A modern design for a creative brand.</p></div>
+</article>
+<article class="card portfolio-card">
+<div class="portfolio-image third"><div class="mini-window"><div></div><div></div><div></div></div></div>
+<div class="portfolio-info"><h3>Personal Website</h3><p>A personal space to show your work and ideas.</p></div>
+</article>
+</div>
+<p style="text-align:center;color:var(--muted);font-size:12px;margin-top:20px">These are design concepts, not completed client projects.</p>
+</div>
+</section>
+
+<section id="process">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Simple process</div>
+<h2>How It Works</h2>
+<p>From your first idea to your finished website.</p>
+</div>
+<div class="steps">
+<article class="card"><div class="step-number">01</div><h3>Send your idea</h3><p>Tell us what kind of website you need using our order form.</p></article>
+<article class="card"><div class="step-number">02</div><h3>Discuss the project</h3><p>We discuss the details, timeline and price before starting.</p></article>
+<article class="card"><div class="step-number">03</div><h3>Get your website</h3><p>We create your website and share it with you for review.</p></article>
+</div>
+</div>
+</section>
+
+<section id="order">
+<div class="container">
+<div class="section-title">
+<div class="eyebrow">Let's work together</div>
+<h2>Start Your Project</h2>
+<p>Have an idea? Tell us about it!</p>
+</div>
+<div class="order-wrap">
+<h3>Project request</h3>
+<p>Fill in the form and tell us what kind of website you are looking for.</p>
+
+<form id="orderForm">
+<div class="form-grid">
+<div class="field">
+<label for="name">Your name *</label>
+<input id="name" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name">
+</div>
+
+<div class="field">
+<label for="email">Your email *</label>
+<input id="email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com">
+</div>
+
+<div class="field">
+<label for="type">Website type *</label>
+<select id="type" name="type" required>
+<option value="">Choose a type</option>
+<option>Business website</option>
+<option>Portfolio</option>
+<option>Personal website</option>
+<option>Landing page</option>
+<option>Online store</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="field">
+<label for="budget">Estimated budget</label>
+<select id="budget" name="budget">
+<option value="">Not sure yet</option>
+<option>Under €50</option>
+<option>€50–€100</option>
+<option>€100–€250</option>
+<option>€250+</option>
+</select>
+</div>
+
+<div class="field full">
+<label for="details">Tell us about your idea *</label>
+<textarea id="details" name="details" required maxlength="3000" placeholder="What should your website look like? What features do you need?"></textarea>
+</div>
+
+<div class="field full">
+<label for="deadline">Preferred deadline</label>
+<input id="deadline" name="deadline" type="date">
+</div>
+
+<div class="field full">
+<label class="checkbox">
+<input type="checkbox" id="consent" required>
+<span>I agree to be contacted about this project. *</span>
+</label>
+</div>
+
+<div class="field full">
+<button class="btn" id="submitOrder" type="submit">Send project request →</button>
+<div id="formMessage" role="status" aria-live="polite"></div>
+<p class="form-note">Submitting a request does not create a contract or guarantee a price. Project details and pricing will be confirmed separately.</p>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+
+<main id="adminPage">
+<div class="container admin-shell">
+<div class="admin-top">
+<div>
+<div class="eyebrow">Private area</div>
+<h2>BR1Websides <span class="gradient">Admin</span></h2>
+<p class="order-meta">Manage incoming website requests.</p>
+</div>
+<a class="btn btn-outline small-btn" href="#home" id="backToSite">Back to website</a>
+</div>
+
+<section id="loginPanel" class="admin-panel">
+<h3>Administrator login</h3>
+<form id="loginForm" class="admin-form">
+<div class="field">
+<label for="adminEmail">Email</label>
+<input id="adminEmail" type="email" required autocomplete="username" placeholder="Admin email">
+</div>
+<div class="field">
+<label for="adminPassword">Password</label>
+<input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Password">
+</div>
+<button class="btn" id="loginButton" type="submit">Log in</button>
+<div id="loginMessage" class="message" role="status"></div>
+</form>
+</section>
+
+<section id="dashboardPanel" class="admin-panel hidden">
+<div class="admin-top">
+<div>
+<h3>Orders</h3>
+<p class="order-meta" id="orderCount">Loading orders...</p>
+</div>
+<button class="btn btn-outline small-btn" id="logoutButton" type="button">Log out</button>
+</div>
+<div id="ordersList" class="order-list"><p class="empty">Loading...</p></div>
+<div id="dashboardMessage" class="message" role="status"></div>
+</section>
+</div>
+</main>
+
+<footer>
+<div class="container footer-content">
+<div>
+<a class="logo" href="#home">BR1<span>Websides</span></a>
+<p>Creative websites. Built around your ideas.</p>
+</div>
+<div>
+<p>© <span id="year"></span> BR1Websides. All rights reserved.</p>
+<a class="admin-link" href="#admin">Administrator</a>
+</div>
+</div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, serverTimestamp,
+  getDocs, query, orderBy, doc, updateDoc, deleteDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAfYfFfxg_Rbq2fK1cGSSWwWyx6neN7d4CE",
+  authDomain: "br1websides.firebaseapp.com",
+  projectId: "br1websides",
+  storageBucket: "br1websides.firebasestorage.app",
+  messagingSenderId: "925436970134",
+  appId: "1:925436970134:web:2a077abb6491d42c442eb7",
+  measurementId: "G-FH0FY21NJM"
+};
+
+const ADMIN_UID = "7jIl2QtduLVM1WsWhJ7uHgfQCCi1";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const $ = id => document.getElementById(id);
+
+$("year").textContent = new Date().getFullYear();
+
+$("menuBtn").addEventListener("click", () => {
+  $("navLinks").classList.toggle("open");
+  $("menuBtn").textContent =
+    $("navLinks").classList.contains("open") ? "✕" : "☰";
+});
+
+document.querySelectorAll(".navlinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("navLinks").classList.remove("open");
+    $("menuBtn").textContent = "☰";
+  });
+});
+
+function showPage() {
+  const admin = location.hash === "#admin";
+  $("publicPage").classList.toggle("hidden", admin);
+  $("adminPage").classList.toggle("active", admin);
+  window.scrollTo(0, 0);
+
+  if (admin && auth.currentUser) loadOrders();
+}
+
+window.addEventListener("hashchange", showPage);
+showPage();
+
+/* CUSTOMER ORDER FORM */
+$("orderForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+
+  const button = $("submitOrder");
+  const message = $("formMessage");
+
+  button.disabled = true;
+  message.className = "";
+  message.textContent = "Sending your request securely...";
+
+  const values = new FormData(form);
+
+  try {
+    await addDoc(collection(db, "orders"), {
+      name: String(values.get("name")).trim(),
+      email: String(values.get("email")).trim(),
+      websiteType: String(values.get("type")),
+      budget: String(values.get("budget") || "Not specified"),
+      description: String(values.get("details")).trim(),
+      deadline: String(values.get("deadline") || "Not specified"),
+      createdAt: serverTimestamp(),
+      status: "Pending",
+      consent: $("consent").checked
+    });
+
+    form.reset();
+    message.className = "success";
+    message.textContent = "Thank you! Your request has been sent successfully.";
+
+  } catch (error) {
+    console.error("Order submission failed:", error);
+    message.className = "error";
+    message.textContent = "We couldn't send your request. Please try again later.";
+
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* ADMIN LOGIN */
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const button = $("loginButton");
+  const message = $("loginMessage");
+
+  button.disabled = true;
+  message.className = "message";
+  message.textContent = "Signing in...";
+
+  try {
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      $("adminEmail").value.trim(),
+      $("adminPassword").value
+    );
+
+    if (credential.user.uid !== ADMIN_UID) {
+      await signOut(auth);
+      throw new Error("This account is not authorized as the BR1Websides administrator.");
+    }
+
+    $("adminPassword").value = "";
+    message.textContent = "";
+    await loadOrders();
+
+  } catch (error) {
+    console.error("Admin login failed:", error);
+    message.className = "message error";
+
+    message.textContent = error.code === "auth/invalid-credential"
+      ? "Incorrect email or password."
+      : (error.message || "Login failed. Check your connection and try again.");
+
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* CHECK AUTHENTICATION */
+onAuthStateChanged(auth, async user => {
+  if (user && user.uid === ADMIN_UID) {
+    $("loginPanel").classList.add("hidden");
+    $("dashboardPanel").classList.remove("hidden");
+
+    if (location.hash === "#admin") {
+      await loadOrders();
+    }
+
+  } else {
+    $("loginPanel").classList.remove("hidden");
+    $("dashboardPanel").classList.add("hidden");
+  }
+});
+
+/* LOG OUT */
+$("logoutButton").addEventListener("click", async () => {
+  await signOut(auth);
+  $("loginMessage").textContent = "You have been logged out.";
+});
+
+/* LOAD CUSTOMER ORDERS */
+async function loadOrders() {
+  if (!auth.currentUser || auth.currentUser.uid !== ADMIN_UID) return;
+
+  $("ordersList").innerHTML = '<p class="empty">Loading orders...</p>';
+  $("orderCount").textContent = "Loading...";
+  $("dashboardMessage").textContent = "";
+
+  try {
+    const ordersQuery = query(
+      collection(db, "orders"),
+      orderBy("createdAt", "desc")
+    );
+
+    const snapshot = await getDocs(ordersQuery);
+
+    $("orderCount").textContent = `${snapshot.size} order(s)`;
+    $("ordersList").replaceChildren();
+
+    if (snapshot.empty) {
+      $("ordersList").innerHTML =
+        '<p class="empty">No orders yet. New requests will appear here.</p>';
+      return;
+    }
+
+    snapshot.forEach(orderDoc => {
+      const order = orderDoc.data();
+
+      const card = document.createElement("article");
+      card.className = "order-item";
+
+      const title = document.createElement("div");
+      title.className = "order-head";
+
+      const heading = document.createElement("strong");
+      heading.textContent = order.name || "Unnamed client";
+
+      const statusText = document.createElement("span");
+      statusText.className = "order-meta";
+      statusText.textContent = order.status || "Pending";
+
+      title.append(heading, statusText);
+
+      const meta = document.createElement("div");
+      meta.className = "order-meta";
+
+      const date = order.createdAt?.toDate
+        ? order.createdAt.toDate().toLocaleString()
+        : "Date unavailable";
+
+      meta.textContent =
+        `${order.email || ""} • ${order.websiteType || ""} • ${order.budget || "No budget"} • ${date}`;
+
+      const description = document.createElement("p");
+      description.className = "order-description";
+      description.textContent = order.description || "";
+
+      const deadline = document.createElement("p");
+      deadline.className = "order-meta";
+      deadline.textContent =
+        `Preferred deadline: ${order.deadline || "Not specified"}`;
+
+      const actions = document.createElement("div");
+      actions.className = "order-actions";
+
+      /* CHANGE ORDER STATUS */
+      const status = document.createElement("select");
+
+      ["Pending", "In Progress", "Completed"].forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        status.append(option);
+      });
+
+      status.value = order.status || "Pending";
+      status.setAttribute(
+        "aria-label",
+        `Status for ${order.name || "order"}`
+      );
+
+      status.addEventListener("change", async () => {
+        status.disabled = true;
+
+        try {
+          await updateDoc(doc(db, "orders", orderDoc.id), {
+            status: status.value
+          });
+
+          statusText.textContent = status.value;
+          $("dashboardMessage").className = "message success";
+          $("dashboardMessage").textContent = "Order status updated.";
+
+        } catch (error) {
+          console.error(error);
+          $("dashboardMessage").className = "message error";
+          $("dashboardMessage").textContent =
+            "Could not update status. Check Firestore rules.";
+
+          status.value = order.status || "Pending";
+
+        } finally {
+          status.disabled = false;
+        }
+      });
+
+      /* DELETE ORDER */
+      const remove = document.createElement("button");
+      remove.className = "btn btn-outline small-btn";
+      remove.type = "button";
+      remove.textContent = "Delete";
+
+      remove.addEventListener("click", async () => {
+        if (!confirm(
+          `Delete the order from ${order.name || "this client"}? This cannot be undone.`
+        )) return;
+
+        remove.disabled = true;
+
+        try {
+          await deleteDoc(doc(db, "orders", orderDoc.id));
+
+          card.remove();
+
+          const remaining =
+            $("ordersList").querySelectorAll(".order-item").length;
+
+          $("orderCount").textContent = `${remaining} order(s)`;
+
+          $("dashboardMessage").className = "message success";
+          $("dashboardMessage").textContent = "Order deleted.";
+
+          if (remaining === 0) {
+            $("ordersList").innerHTML =
+              '<p class="empty">No orders yet.</p>';
+          }
+
+        } catch (error) {
+          console.error(error);
+          $("dashboardMessage").className = "message error";
+          $("dashboardMessage").textContent =
+            "Could not delete order. Check Firestore rules.";
+
+          remove.disabled = false;
+        }
+      });
+
+      actions.append(status, remove);
+      card.append(title, meta, description, deadline, actions);
+      $("ordersList").append(card);
+    });
+
+  } catch (error) {
+    console.error("Loading orders failed:", error);
+
+    $("ordersList").innerHTML =
+      '<p class="empty">Could not load orders. Check that you are signed in as the administrator and that Firestore rules are published.</p>';
+
+    $("orderCount").textContent = "Error";
+  }
+}
+</script>
+
+</body>
+</html>
